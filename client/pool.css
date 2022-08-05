@@ -1,0 +1,755 @@
+body {
+	background: #0B1621;
+	margin: 0;
+	font-family: "Trebuchet MS", sans-serif;
+	font-size: 15px;
+}
+
+#content {
+	position: absolute;
+	height: calc(100% - 40px);
+	top: 20px;
+	text-align: center;
+	left: 20px;
+	width: calc(80% - 20px);
+}
+
+#map {
+	position: relative;
+	height: 100%;
+	width: 1046px;
+	left: 180px;
+}
+
+.scheme {
+	max-height: 100%;
+	max-width: 100%;
+	display: none;
+}
+
+.scheme.selected {
+	display: inline-block;
+}
+
+#errors {
+	position: fixed;
+	left: 20px;
+	top: 40px;
+	width: 180px;
+	color: #393C49;
+	text-align: center;
+	background: #393C49;
+	height: calc(100% - 62px);
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.error {
+	padding: 5px;
+	background: #FFED00;
+	border-radius: 5px;
+	margin: 4px;
+	margin-bottom: 10px;
+}
+
+#tabs {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	width: 270px;
+	background: #393c49;
+	height: calc(100% - 40px);
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+.tab-toggle-text {
+	position: relative;
+	left: 150px;
+	font-size: 11px;
+	font-weight: bold;
+	top: 9px;
+	color: #fff;
+	width: 110px;
+	text-align: center;
+}
+
+.tab-toggle, .tab-field, .tab-menu, .tab-pools {
+	position: relative;
+	margin-top: 10px;
+	color: #fff;
+	height: 30px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.tab-menu {
+	height: 100px;
+}
+
+.tab-pools {
+	height: 20px;
+}
+
+.tab-title {
+	position: absolute;
+	left: 10px;
+	top: 7px;
+	width: 158px;
+	text-align: center;
+}
+
+.tab-toggle-button {
+	position: absolute;
+	top: 7px;
+	right: 32px;
+	width: 60px;
+	height: 18px;
+	background: #fff;
+	border-radius: 12px;
+	cursor: pointer;
+}
+
+.tab-toggle-button-circle {
+	position: absolute;
+	height: 14px;
+	width: 26px;
+	background: #D03B52;
+	border-radius: 10px;
+	top: 2px;
+	left: 2px;
+	transition: left 0.2s ease-out 0s;
+}
+
+.tab-toggle-button-dist {
+	font-size: 13px;
+	color: #fff;
+	position: relative;
+	display: none;
+	font-weight: bold;
+	left: 12px;
+	top: 1px;
+}
+
+.mode[data-status="0"] .tab-toggle-button-circle, .power[data-status="1"] .tab-toggle-button-circle {
+	background: #009846;
+	left: 32px;
+}
+
+.mode[data-status="1"] .tab-toggle-button-circle, .power[data-status="0"] .tab-toggle-button-circle {
+	background: #D03B52;
+	left: 2px;
+}
+
+.tab-toggle[data-status="2"] .tab-toggle-button, .tab-toggle[data-status="3"] .tab-toggle-button {
+	background: #1a1a1e;
+	border: 2px solid;
+	right: 30px;
+	top: 5px;
+}
+.tab-toggle[data-status="2"] .tab-toggle-button-circle, .tab-toggle[data-status="3"] .tab-toggle-button-circle {
+	background: #92959100;
+	left: 32px;
+}
+.tab-toggle[data-status="2"] .tab-toggle-button-dist, .tab-toggle[data-status="3"] .tab-toggle-button-dist {
+	display: block;
+}
+
+.tab-toggle[data-status="5"] .tab-toggle-button-circle, .tab-toggle[data-status="6"] .tab-toggle-button-circle {
+	background: #D0A82F;
+	left: 17px;
+}
+
+.tab-field-text {
+	position: absolute;
+	right: 21px;
+	width: 80px;
+	height: 20px;
+	top: 5px;
+	padding-top: 2px;
+	background: #fff;
+	color: #111;
+	text-align: center;
+	border-radius: 6px;
+	font-weight: bold;
+}
+
+.tab-line {
+	position: relative;
+	margin-top: 10px;
+	height: 4px;
+	background: #fff;
+	width: 80%;
+	left: 10%;
+	border-radius: 2px;
+}
+
+.tab-input-text {
+	position: absolute;
+	height: 21px;
+	top: 5px;
+	padding-top: 1px;
+	background: #fff;
+	color: #111;
+	text-align: center;
+	border-radius: 6px;
+	font-weight: bold;
+	border: 0;
+	right: 21px;
+	width: 79px;
+	font-family: "Trebuchet MS", sans-serif;
+	font-size: 15px;
+}
+
+.tab-input-text:disabled {
+	opacity: 0.5;
+}
+
+.tab-main {
+	position: relative;
+	text-align: center;
+	color: #fff;
+	margin-top: 10px;
+	font-style: italic;
+	font-weight: bold;
+}
+
+#errors .tab-main {
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+.tab-pool {
+	position: absolute;
+	left: 0px;
+	width: calc(50% - 4px);
+	height: 21px;
+	top: -10px;
+	padding-top: 2px;
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+	cursor: pointer;
+	user-select: none;
+	border: 2px solid #fff;
+	border-radius: 15px 0 0 0;
+	background: #393c49;
+}
+
+.tab-pool.right {
+	left: 50%;
+	border-radius: 0 15px 0 0;
+}
+
+.tab-pool.selected {
+	background: #3E8E62;
+}
+
+.tab-pool:hover {
+	background: #C49743;
+}
+
+.tab-container {
+	position: absolute;
+	left: 0px;
+	transition: left 0.2s ease-out 0s;
+	width: 270px;
+}
+
+.tab-container.left {
+	left: -270px;
+}
+
+.tab-container.center {
+	left: 0px;
+}
+
+.tab-container.right {
+	left: 270px;
+}
+
+.text-field.error > rect {
+	fill: #D98282;
+}
+
+.tab-button {
+	position: absolute;
+	left: calc(50% - 60px);
+	width: 120px;
+	height: 21px;
+	top: 40px;
+	padding-top: 2px;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	font-weight: bold;
+	user-select: none;
+}
+
+.tab-button.waiting {
+	background: #C8C9C9;
+	color: #555;
+	font-style: italic;
+	cursor: auto;
+}
+
+.tab-button.start {
+	cursor: pointer;
+	background: #3E8E62;
+}
+
+.tab-button.start:hover {
+	background: #39815A;
+}
+
+.tab-button.inputerror {
+	cursor: auto;
+	background: #FFED00;
+	color: #000;
+}
+
+.tab-button.stop {
+	cursor: pointer;
+	background: #D03B52;
+}
+
+.tab-button.stop:hover {
+	background: #A8394A;
+}
+
+.tab-loading {
+	position: absolute;
+	top: 73px;
+	height: 23px;
+	font-size: 0px;
+	width: 250px;
+	text-align: center;
+}
+
+.tab-loading-step {
+	position: relative;
+	height: 23px;
+	width: 2px;
+	background: #fff;
+	border-radius: 4px;
+	display: inline-block;
+	margin-right: 4px;
+}
+
+.tab-loading-step.on {
+	background: #3E8E62;
+}
+
+/* ???????????? */
+
+.tab-menu .tab-button {
+	display: none;
+}
+
+.tab-menu .tab-button.waiting {
+	display: block;
+}
+
+.tab-menu[data-status='0'] .tab-button.start {
+	display: block;
+}
+
+.tab-menu[data-status='1'] .tab-button.stop {
+	display: block;
+}
+
+.tab-menu.inputerror .tab-button.inputerror {
+	display: block;
+}
+
+.tab-menu.active .tab-input-text, .tab-menu.active .tab-title {
+	display: none;
+}
+
+.tab-menu .active {
+	display: none;
+	width: calc(100% - 20px);
+}
+
+.tab-menu.active .active {
+	display: block;
+}
+
+/* ???????????? */
+
+.valve > g {
+	cursor: pointer;
+}
+
+.valve > g > rect {
+	transform-box: fill-box;
+	transform-origin: center;
+	fill: #008DD200;
+}
+
+.valve[data-status='0'] > g > rect {
+	transform: rotate(0deg);
+	fill: #E31E24;
+}
+
+.valve[data-status='1'] > g > rect {
+	transform: rotate(90deg);
+	fill: #008DD2;
+}
+
+.valve[data-status='2'] > g > rect {
+	fill: #E31E24;
+	animation: closing 2s infinite linear;
+}
+
+.valve[data-status='3'] > g > rect {
+	fill: #008DD2;
+	animation: opening 2s infinite linear;
+}
+
+.valve[data-status='4'] > g > rect {
+	transform: rotate(225deg);
+	fill: #000;
+}
+
+@keyframes opening {
+  from {
+    transform: rotate(90deg);
+  }
+  to {
+    transform: rotate(450deg);
+  }
+}
+
+@keyframes closing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* ???????????? */
+
+/* ???????? ???????????? */
+
+.rele > g {
+	cursor: pointer;
+}
+
+.rele > g > g {
+	display: none;
+}
+
+.rele > g > g.pump-none {
+	display: block;
+}
+
+.rele[data-status='0'] > g > g.pump-off {
+	display: block;
+}
+
+.rele[data-status='1'] > g > g.pump-on {
+	display: block;
+}
+
+.rele[data-status='2'] > g > g.pump-dist {
+	display: block;
+}
+
+/* ???????? ???????????? */
+
+/* ???????????????????? ???????????????????????????? */
+
+.controller > g > g.boiler-on {
+	display: none;
+}
+
+.controller[data-status='1'] > g > g.boiler-on {
+	display: block;
+}
+
+/* ???????????????????? ???????????????????????????? */
+
+/* ???????????????????? ???? */
+
+.controller > g.ozon-generator-on {
+	display: none;
+}
+
+.controller[data-status='1'] > g.ozon-generator-on {
+	display: block;
+}
+
+/* ???????????????????? ???? */
+
+/* ???????????????????? ?????????????? */
+
+.controller > .filter-normal, .controller > .filter-cleaning, .controller > .filter-stop {
+	display: none;
+}
+
+.controller[data-status='0'] > .filter-stop {
+	display: block;
+}
+
+.controller[data-status='1'] > .filter-normal {
+	display: block;
+}
+
+.controller[data-status='2'] > .filter-cleaning {
+	display: block;
+}
+
+/* ???????????????????? ?????????????? */
+
+.timer {
+	display: none;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.controller[data-status='2'] .timer {
+	display: block;
+}
+
+.text-input > g {
+	cursor: pointer;
+}
+
+
+#window {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background: #000000AA;
+	display: none;
+}
+
+#window.active {
+	display: block;
+}
+
+#window-box {
+	position: absolute;
+	height: 150px;
+	width: 420px;
+	top: calc(50% - 78px);
+	left: calc(50% - 355px);
+	background: #393c49;
+	border: 4px solid #f6f6f6;
+	border-radius: 15px;
+	color: #fff;
+}
+
+#window-box.error-block {
+	height: auto;
+	border: 4px solid #e12222;
+}
+
+.window-box-title {
+	width: calc(100% - 60px);
+	height: auto;
+	text-align: center;
+	padding-top: 20px;
+	font-size: 15px;
+	padding-bottom: 20px;
+}
+
+.window-box-close {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	height: 42px;
+	width: 60px;
+	padding-top: 18px;
+	text-align: center;
+	cursor: pointer;
+	color: #fff;
+	opacity: 0.5;
+}
+
+.window-box-close:hover {
+	opacity: 1;
+}
+
+.window-box-button {
+	position: absolute;
+	left: calc(50% - 90px);
+	width: 180px;
+	height: 21px;
+	top: 73px;
+	padding-top: 2px;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	font-weight: bold;
+	cursor: pointer;
+	user-select: none;
+}
+
+#window-valve .window-box-button, #window-rele .window-box-button {
+	height: 27px;
+	padding-top: 10px;
+}
+
+#window-submit .window-box-title {
+	height: auto;
+	width: calc(100% - 20px);
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#window-submit .window-box-button.open {
+	left: 220px;
+	top: 110px;
+}
+
+#window-submit .window-box-button.close {
+	left: 20px;
+	top: 110px;
+}
+
+.window-box-button.open {
+	background: #3E8E62;
+}
+.window-box-button.open:hover {
+	background: #39815A;
+}
+
+.window-box-button.close {
+	background: #D03B52;
+}
+.window-box-button.close:hover {
+	background: #A8394A;
+}
+
+.window-box-button.stop {
+	background: #CCB042;
+}
+.window-box-button.stop:hover {
+	background: #A89341;
+}
+
+.window-box-button.waiting {
+	background: #C8C9C9;
+	color: #555;
+	font-style: italic;
+	cursor: auto;
+}
+
+.window-box-input {
+	position: absolute;
+	height: 21px;
+	top: 65px;
+	padding-top: 1px;
+	background: #fff;
+	color: #111;
+	text-align: center;
+	border-radius: 6px;
+	font-weight: bold;
+	border: 0;
+	left: calc(50% - 78px);
+	width: 152px;
+	font-family: "Trebuchet MS", sans-serif;
+	font-size: 15px;
+}
+
+#window-ustavka .window-box-button {
+	top: 100px;
+}
+
+#window-box > * {
+	display: none;
+}
+
+#window-box.valve-block #window-valve, 
+#window-box.ustavka-block #window-ustavka, 
+#window-box.rele-block #window-rele, 
+#window-box.error-block #window-error, 
+#window-box.submit-block #window-submit {
+	display: block;
+}
+
+/* ???????? ?????????????? */
+
+.window-block > .window-box-button {
+	display: none;
+}
+
+#window-valve[data-status="0"] > #window-valve-button-open {
+	display: block;
+}
+
+#window-valve[data-status="1"] > #window-valve-button-close {
+	display: block;
+}
+
+#window-valve[data-status="2"] > #window-valve-button-stop {
+	display: block;
+}
+
+#window-valve[data-status="4"] > #window-valve-button-open {
+	display: block;
+	left: 25px;
+}
+
+#window-valve[data-status="4"] > #window-valve-button-close {
+	display: block;
+	left: 215px;
+}
+
+#window-valve[data-status="6"] > #window-valve-button-waiting {
+	display: block;
+}
+
+/* ???????? ?????????????? */
+
+#window-ustavka[data-status="0"] > #window-ustavka-button-save {
+	display: block;
+}
+
+#window-ustavka[data-status="1"] > #window-ustavka-button-error {
+	display: block;
+}
+
+#window-ustavka[data-status="6"] > #window-ustavka-button-waiting {
+	display: block;
+}
+
+/*  */
+
+#window-rele[data-status="0"] > #window-rele-button-open {
+	display: block;
+}
+
+#window-rele[data-status="1"] > #window-rele-button-close {
+	display: block;
+}
+
+#window-rele[data-status="6"] > #window-rele-button-waiting {
+	display: block;
+}
+
+/*   */
+
+#window-submit > #window-submit-button-ok, #window-submit > #window-submit-button-cancel {
+	display: block;
+}
+
+
+#timer {
+	position: absolute;
+	top: 6px;
+	left: 6px;
+	color: #b9b9b9;
+	font-style: italic;
+	font-size: 14px;
+}
+
+.pool-temp {
+	font-size: 40px !important;
+}
